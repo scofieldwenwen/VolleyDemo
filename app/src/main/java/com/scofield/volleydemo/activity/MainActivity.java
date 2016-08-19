@@ -22,7 +22,7 @@ import com.scofield.volleydemo.bean.CityBean;
 import com.scofield.volleydemo.bean.UserBean;
 import com.scofield.volleydemo.http.HeaderBean;
 import com.scofield.volleydemo.http.HttpResponse;
-import com.scofield.volleydemo.http.NetError;
+import com.scofield.volleydemo.http.UICallBack;
 import com.scofield.volleydemo.http.VolleyHelper;
 import com.scofield.volleydemo.imageloader.ImageLoader;
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String url = "http://tronsis.com/web/cms/images/website/icon/qr_code.png";
                 ImageView iv = (ImageView) findViewById(R.id.iv);
-                ImageLoader.getInstance(MainActivity.this).loadImage(url,iv);
+                ImageLoader.getInstance(MainActivity.this).loadImage(url, iv);
             }
         });
 
@@ -73,8 +73,10 @@ public class MainActivity extends AppCompatActivity {
         final Response.Listener listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                HttpResponse httpResponse = new Gson().fromJson(response, new TypeToken<HttpResponse>(){}.getType());
-                Object  result = new Gson().fromJson(new Gson().toJson(httpResponse.getData()), new TypeToken<List<CityBean>>(){}.getType());
+                HttpResponse httpResponse = new Gson().fromJson(response, new TypeToken<HttpResponse>() {
+                }.getType());
+                Object result = new Gson().fromJson(new Gson().toJson(httpResponse.getData()), new TypeToken<List<CityBean>>() {
+                }.getType());
 
                 List<CityBean> cityBeanList = (List<CityBean>) result;
                 HeaderBean headerBean = httpResponse.getHeader();
@@ -115,22 +117,41 @@ public class MainActivity extends AppCompatActivity {
         params.put("uid", "12");
 
         VolleyHelper volleyHelper = new VolleyHelper();
-        volleyHelper.stringRequest(this, url, params, new VolleyHelper.OnNetCallback<String>() {
+        //        volleyHelper.stringRequest(this, url, params, new VolleyHelper.OnNetCallback<String>() {
+        //            @Override
+        //            public void onSuccess(String result) {
+        //                String string = result.toString();
+        //                HttpResponse<UserBean> httpResponse = new Gson().fromJson(string, new TypeToken<HttpResponse<UserBean>>() {
+        //                }.getType());
+        //
+        //                tv.setText(result.toString());
+        //
+        ////                Toast.makeText(MainActivity.this, "success: " + result.toString(), Toast.LENGTH_SHORT).show();
+        //            }
+        //
+        //            @Override
+        //            public void onFail(NetError error) {
+        //                Toast.makeText(MainActivity.this, "error: " + error.toString(), Toast.LENGTH_SHORT).show();
+        //            }
+        //        });
+
+
+        volleyHelper.jsonRequest(this, url, params, UserBean.class, new UICallBack() {
             @Override
-            public void onSuccess(String result) {
-                String string = result.toString();
-                HttpResponse<UserBean> httpResponse = new Gson().fromJson(string, new TypeToken<HttpResponse<UserBean>>() {
-                }.getType());
-
-                tv.setText(result.toString());
-
-//                Toast.makeText(MainActivity.this, "success: " + result.toString(), Toast.LENGTH_SHORT).show();
+            public void onStart() {
             }
 
             @Override
-            public void onFail(NetError error) {
-                Toast.makeText(MainActivity.this, "error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            public void onSuccess(Object result) {
+                UserBean userBean = (UserBean) result;
+                Toast.makeText(MainActivity.this, userBean.getUsername(), Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onFail(int code, String message) {
+                Toast.makeText(MainActivity.this, "code: " + code + "\nmessage: " + message, Toast.LENGTH_SHORT).show();
+            }
+
         });
 
     }

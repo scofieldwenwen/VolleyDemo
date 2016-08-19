@@ -1,233 +1,114 @@
 package com.scofield.volleydemo.bean;
 
-import java.io.Serializable;
-
 /**
- * UserBean
- *
- * @author allen@tronsis.com
- * @date 8/3/2016 11:37 AM
+ * @author scofield@tronsis.com
+ * @date 2016/8/19 11:15
  */
-
-public class UserBean implements Serializable {
-
+public class UserBean {
 
     /**
-     * id : 1
-     * username : 18888888888
-     * token : a1sd3asd3a4sd3
-     * nickName : Moon
-     * realName : 呵呵
-     * address : 广东深圳
-     * email : 123@123.com
-     * phone : 1321456124
-     * wechat : 1321456124
-     * age : 12
+     * address : 深圳咯哦哦哦斤斤计较咯哦哦去咯
+     * age : 1980
+     * avator : /images/uavator/7irc1471329211002.jpg
+     * blockTime : -28800000
+     * education : 创火恨，en' wu
+     * email : 471399137@qq.com
      * gender : other
-     * language : en,zn
-     * profession : teacher
-     * education : bachelor
-     * hobbies : sleeping
-     * avator : /USER/54654654654
-     * status : vd
-     * timestamp : 1469758271000
+     * hobbies : 吃.h
+     * id : 12
+     * imTokenD : YqcwiHkC9H3q5yzVmbbJETeS3MA7xyIIkYhU7eE2Fu8OhWKYpAM2RpqFjOfVWJR/scpfVaf+kDdM97Ix3yvZig==
+     * imTokenV : f+WAdzLW5YY7BMHb74f/HjeS3MA7xyIIkYhU7eE2Fu8OhWKYpAM2RqPgopnBBxrSb9fqNRPBaxMT3EXSWHiIZg==
+     * language : zh,en,ja,英文,中文,日语
+     * nickName : w
+     * profession : 测试，魔女
+     * timestamp : 1471487571000
+     * token : MTJ8Y3k1aHdrd2p3dXwxNDcxNDg5OTEzMzIw
+     * username : 13912341234
      */
-    private int _id;
-    private long id;
-    private String username;
-    private String token;
-    private String nickName;
-    private String realName;
+
     private String address;
-    private String email;
-    private String phone;
-    private String wechat;
     private int age;
-    private String gender;
-    private String language;
-    private String profession;
-    private String education;
-    private String hobbies;
     private String avator;
-    private String status;
+    private long blockTime;
+    private String education;
+    private String email;
+    private String gender;
+    private String hobbies;
+    private long id;
+    private String imTokenD;
+    private String imTokenV;
+    private String language;
+    private String nickName;
+    private String profession;
     private long timestamp;
+    private String token;
+    private String username;
 
-    public UserBean() {
-    }
+    public String getAddress() { return address;}
 
-    public UserBean(int _id, long id, String username, String token, String nickName, String realName, String address, String email, String phone, String
-            wechat, int age, String gender, String language, String profession, String education, String hobbies, String avator, String status, long
-            timestamp) {
-        this._id = _id;
-        this.id = id;
-        this.username = username;
-        this.token = token;
-        this.nickName = nickName;
-        this.realName = realName;
-        this.address = address;
-        this.email = email;
-        this.phone = phone;
-        this.wechat = wechat;
-        this.age = age;
-        this.gender = gender;
-        this.language = language;
-        this.profession = profession;
-        this.education = education;
-        this.hobbies = hobbies;
-        this.avator = avator;
-        this.status = status;
-        this.timestamp = timestamp;
-    }
+    public void setAddress(String address) { this.address = address;}
 
-    public int get_id() {
-        return _id;
-    }
+    public int getAge() { return age;}
 
-    public void set_id(int _id) {
-        this._id = _id;
-    }
+    public void setAge(int age) { this.age = age;}
 
-    public long getId() {
-        return id;
-    }
+    public String getAvator() { return avator;}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setAvator(String avator) { this.avator = avator;}
 
-    public String getUsername() {
-        return username;
-    }
+    public long getBlockTime() { return blockTime;}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setBlockTime(long blockTime) { this.blockTime = blockTime;}
 
-    public String getToken() {
-        return token;
-    }
+    public String getEducation() { return education;}
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+    public void setEducation(String education) { this.education = education;}
 
-    public String getNickName() {
-        return nickName;
-    }
+    public String getEmail() { return email;}
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
+    public void setEmail(String email) { this.email = email;}
 
-    public String getRealName() {
-        return realName;
-    }
+    public String getGender() { return gender;}
 
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
+    public void setGender(String gender) { this.gender = gender;}
 
-    public String getAddress() {
-        return address;
-    }
+    public String getHobbies() { return hobbies;}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public void setHobbies(String hobbies) { this.hobbies = hobbies;}
 
-    public String getEmail() {
-        return email;
-    }
+    public long getId() { return id;}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setId(long id) { this.id = id;}
 
-    public String getPhone() {
-        return phone;
-    }
+    public String getImTokenD() { return imTokenD;}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    public void setImTokenD(String imTokenD) { this.imTokenD = imTokenD;}
 
-    public String getWechat() {
-        return wechat;
-    }
+    public String getImTokenV() { return imTokenV;}
 
-    public void setWechat(String wechat) {
-        this.wechat = wechat;
-    }
+    public void setImTokenV(String imTokenV) { this.imTokenV = imTokenV;}
 
-    public int getAge() {
-        return age;
-    }
+    public String getLanguage() { return language;}
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setLanguage(String language) { this.language = language;}
 
-    public String getGender() {
-        return gender;
-    }
+    public String getNickName() { return nickName;}
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setNickName(String nickName) { this.nickName = nickName;}
 
-    public String getLanguage() {
-        return language;
-    }
+    public String getProfession() { return profession;}
 
-    public void setLanguage(String language) {
-        this.language = language;
-    }
+    public void setProfession(String profession) { this.profession = profession;}
 
-    public String getProfession() {
-        return profession;
-    }
+    public long getTimestamp() { return timestamp;}
 
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp;}
 
-    public String getEducation() {
-        return education;
-    }
+    public String getToken() { return token;}
 
-    public void setEducation(String education) {
-        this.education = education;
-    }
+    public void setToken(String token) { this.token = token;}
 
-    public String getHobbies() {
-        return hobbies;
-    }
+    public String getUsername() { return username;}
 
-    public void setHobbies(String hobbies) {
-        this.hobbies = hobbies;
-    }
-
-    public String getAvator() {
-        return avator;
-    }
-
-    public void setAvator(String avator) {
-        this.avator = avator;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
+    public void setUsername(String username) { this.username = username;}
 }
