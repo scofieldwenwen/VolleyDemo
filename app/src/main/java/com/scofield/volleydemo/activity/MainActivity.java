@@ -8,20 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.scofield.volleydemo.R;
 import com.scofield.volleydemo.bean.CityBean;
 import com.scofield.volleydemo.bean.UserBean;
-import com.scofield.volleydemo.http.HeaderBean;
-import com.scofield.volleydemo.http.HttpResponse;
 import com.scofield.volleydemo.http.UICallBack;
 import com.scofield.volleydemo.http.VolleyHelper;
 import com.scofield.volleydemo.imageloader.ImageLoader;
@@ -67,47 +57,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getCityInfoPost() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
         String url = "http://192.168.31.185:8080/deplay/api/common/list_cities";
-
-        final Response.Listener listener = new Response.Listener<String>() {
+        Map<String, String> map = new HashMap<>();
+        map.put("country", "japan");
+        new VolleyHelper().jsonRequest(this, url, map, new TypeToken<List<CityBean>>() {
+        }.getType(), new UICallBack() {
             @Override
-            public void onResponse(String response) {
-                HttpResponse httpResponse = new Gson().fromJson(response, new TypeToken<HttpResponse>() {
-                }.getType());
-                Object result = new Gson().fromJson(new Gson().toJson(httpResponse.getData()), new TypeToken<List<CityBean>>() {
-                }.getType());
+            public void onStart() {
 
-                List<CityBean> cityBeanList = (List<CityBean>) result;
-                HeaderBean headerBean = httpResponse.getHeader();
-                Log.e(TAG, "headerBean: " + headerBean.toString());
+            }
 
-                tv.setText(response);
-
+            @Override
+            public void onSuccess(Object data) {
+                List<CityBean> cityBeanList = (List<CityBean>) data;
                 for (CityBean cityBean : cityBeanList) {
                     Log.e(TAG, "cityBean: " + cityBean.getCountry());
                 }
-
             }
-        };
 
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        };
+            public void onFail(int code, String message) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, listener, errorListener) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-                map.put("country", "japan");
-                return map;
             }
-        };
-        requestQueue.add(stringRequest);
+        });
+
     }
 
 

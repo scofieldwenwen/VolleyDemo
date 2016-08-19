@@ -1,7 +1,6 @@
 package com.scofield.volleydemo.other;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -10,10 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.scofield.volleydemo.http.HttpResponse;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
 
 /**
  * @author scofield@tronsis.com
@@ -68,46 +64,5 @@ public abstract class HttpCallBack {
      */
     public abstract void onCallBack(int status, Object result);
 
-    /**
-     * 请求失败
-     *
-     * @param exception
-     */
-    private void onRequestFailure(IOException exception) {
-        exception.printStackTrace();
-        if (exception != null && exception instanceof ConnectException) {
-            onNetError();
-        } else if (exception != null && exception instanceof SocketTimeoutException) {
-            onConnectTimeOut();
-        } else {
-            onServerError();
-        }
-    }
 
-
-    /**
-     * 服务器出现错误
-     */
-    public void onServerError() {
-        Toast.makeText(mContext, "服务器出错", Toast.LENGTH_SHORT).show();
-        onCallBack(5000, null);
-    }
-
-    ;
-
-    /**
-     * 连接超时
-     */
-    public void onConnectTimeOut() {
-        Toast.makeText(mContext, "连接超时", Toast.LENGTH_SHORT).show();
-        onCallBack(5001, null);
-    }
-
-    /**
-     * 网络错误
-     */
-    public void onNetError() {
-        Toast.makeText(mContext, "网络错误", Toast.LENGTH_SHORT).show();
-        onCallBack(5002, null);
-    }
 }
